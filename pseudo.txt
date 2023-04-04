@@ -1,0 +1,67 @@
+método retorna matriz de inteiros, leituraArquivo() {
+    cont = 0
+    macaco = 1
+
+    para cada linha do arquivo:
+        dados = [cada posicao uma palavra da linha separada pelo espaço]
+        se cont == 0:
+            aux = dados[1] sem últimos 2 digitos
+            linhas = aux + 1
+            
+            result = [linhas][4] //--> matriz de linhas X 4
+            result[0][0] = dados[1]
+            cont = 1
+        se não:
+            num = 0
+            nImpares = 0
+            nPares = 0
+            qualPalavra = 0
+
+            para cada posicao em dados:
+                se dados[posicao] é númerico:
+                    se qualPalavra == 4 ou qualPalavra == 7:
+                        result[macaco][num++] = dados[posicao]
+                    se não:
+                        if : (dados[posicao] é par) nPares++
+                        else : nImpares++                        
+                    
+                
+                qualPalavra++
+
+            result[macaco][num] = nPares
+            num++
+            result[macaco][num] = nImpares
+            macaco++
+        
+
+    return result
+}
+
+
+m = matriz retornada por leituraArquivo()
+n = m[0][0]
+tam = altura da matriz
+
+enquanto n > 0:
+    para i=1 até tam:
+        macacoPar = m[i][0] + 1
+        macacoImpar = m[i][1] + 1
+        
+        m[macacoPar][2] += m[i][2]
+        m[i][2] = 0
+
+        m[macacoImpar][3] += m[i][3]
+        m[i][3] = 0
+    n--
+
+macacoMaior = 0
+nMaior = m[1][2] + m[1][3]
+para i=2 ate tam:
+    aux = teste[i][2] + teste[i][3]
+    se aux > nMaior:
+        macacoMaior = i - 1
+        nMaior = aux
+    
+imprime macacoMaior
+
+
